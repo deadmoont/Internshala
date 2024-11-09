@@ -37,4 +37,19 @@ class ApiService {
 
     return allRepos;
   }
+
+  static const String _basUrl = 'https://api.unsplash.com';
+  static const String _accessKey = '8_sKr9zDk2jdHGkdqx9ypCt5tCECgpS-BcHbhpuUrY4'; // Replace with your Unsplash access key
+  Future<List<String>> fetchPhotos({int perPage = 20}) async {
+    final url = '$_basUrl/photos?per_page=$perPage&client_id=$_accessKey';
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final List data = json.decode(response.body);
+      // Extract photo URLs
+      return data.map<String>((photo) => photo['urls']['small']).toList();
+    } else {
+      throw Exception('Failed to load photos');
+    }
+  }
 }

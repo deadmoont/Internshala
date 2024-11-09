@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:internshala/screens/repo_detail_screen.dart';
 import 'package:intl/intl.dart';
 import '../services/api_service.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class RepoScreen extends StatefulWidget {
   const RepoScreen({super.key});
@@ -26,17 +25,6 @@ class _RepoScreenState extends State<RepoScreen> {
       return DateFormat('dd MMM yyyy, hh:mm a').format(dateTime);
     } catch (e) {
       return dateStr;
-    }
-  }
-
-  void _launchURL(String url) async {
-    Uri uri = Uri.parse(url);
-
-    if (!await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw Exception('Could not launch $url');
     }
   }
 
@@ -69,17 +57,6 @@ class _RepoScreenState extends State<RepoScreen> {
                   radius: 40,
                 ),
               const SizedBox(height: 10),
-              InkWell(
-                onTap: () {
-                  final url = owner['html_url'] ?? '';
-                  _launchURL(url);
-                },
-                child: Text(
-                  owner['html_url'] ?? 'Profile URL not available',
-                  style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
-                ),
-              ),
-              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -111,6 +88,7 @@ class _RepoScreenState extends State<RepoScreen> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,11 +143,19 @@ class _RepoScreenState extends State<RepoScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const Text(
+                            'Description', // Added a header for the description
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
                           Text(
                             description,
                             style: const TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                               color: Colors.black87,
                             ),
                           ),

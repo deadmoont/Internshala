@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 class RepoDetailPage extends StatelessWidget {
   final Map<String, dynamic> repo;
@@ -19,6 +19,14 @@ class RepoDetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              'Description', // Added a heading for the description
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 8),
             Text(
               repo['description']?.isNotEmpty == true
                   ? repo['description']
@@ -85,15 +93,15 @@ class RepoDetailPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.open_in_new, color: Colors.blue),
-                            onPressed: () {
-                              final url = file['raw_url'] ?? '';
-                              if (url.isNotEmpty) {
-                                _launchURL(url);
-                              }
-                            },
-                          ),
+                          // IconButton(
+                          //   icon: const Icon(Icons.open_in_new, color: Colors.blue),
+                          //   onPressed: () {
+                          //     final url = file['raw_url'] ?? '';
+                          //     if (url.isNotEmpty) {
+                          //       _launchURL(url);
+                          //     }
+                          //   },
+                          // ),
                         ],
                       ),
                     ),
@@ -118,11 +126,11 @@ class RepoDetailPage extends StatelessWidget {
     }
   }
 
-  void _launchURL(String url) async {
-    Uri uri = Uri.parse(url);
-
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch $url');
-    }
-  }
+// void _launchURL(String url) async {
+//   Uri uri = Uri.parse(url);
+//
+//   if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+//     throw Exception('Could not launch $url');
+//   }
+// }
 }
