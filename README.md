@@ -1,16 +1,33 @@
-# internshala
+# View Vault
 
-A new Flutter project.
+**View Vault** is a Flutter application that provides two main sections: a list of public GitHub repositories and a gallery with images. The app allows users to explore GitHub repositories, view detailed information about each repository, and interact with a gallery of images. It also includes features like bookmarking images in the gallery and viewing repo details with file lists and owner information.
+
+## Features
+
+- **GitHub Repos:**
+    - View a list of public GitHub repositories.
+    - For each repository, see the description, comments, and other details.
+    - View detailed information for each repository, including a list of files in the repo.
+    - Long-press a repository to view the owner's details.
+
+- **Gallery:**
+    - Browse a grid view of images from an online gallery (e.g., Unsplash).
+    - Bookmark favorite images for easy access later.
+    - View bookmarked images in a separate screen.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+Ensure that you have the following installed:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- A code editor like [VS Code](https://code.visualstudio.com/) or [Android Studio](https://developer.android.com/studio)
+- An emulator or physical device for testing.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/view-vault.git
