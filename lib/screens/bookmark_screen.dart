@@ -8,20 +8,20 @@ class BookmarkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900], // Dark background color
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Bookmarked Photos',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.black, // Dark app bar background
+        backgroundColor: Colors.black,
       ),
       body: bookmarkedPhotos.isEmpty
           ? const Center(
         child: Text(
           'No bookmarked photos',
-          style: TextStyle(color: Colors.white70), // Light text for visibility
+          style: TextStyle(color: Colors.white70),
         ),
       )
           : GridView.builder(
@@ -35,7 +35,7 @@ class BookmarkPage extends StatelessWidget {
         itemCount: bookmarkedPhotos.length,
         itemBuilder: (context, index) {
           return Card(
-            color: Colors.grey[850], // Dark card color
+            color: Colors.grey[850],
             elevation: 4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

@@ -12,7 +12,7 @@ class ApiService {
       final response = await http.get(
         Uri.parse(_baseUrl),
         headers: {
-          'Cache-Control': 'no-cache', // Prevents caching of the response
+          'Cache-Control': 'no-cache',
           'Pragma': 'no-cache',
         },
       );
@@ -21,10 +21,10 @@ class ApiService {
 
         for (var item in data) {
           if (item is Map<String, dynamic> && item.containsKey('id')) {
-            String id = item['id']; // Assuming 'id' is the unique identifier for each gist
+            String id = item['id'];
             if (!seenIds.contains(id)) {
-              seenIds.add(id); // Add ID to the set
-              allRepos.add(item); // Add the unique item to the list
+              seenIds.add(id);
+              allRepos.add(item);
             }
           }
         }
@@ -39,7 +39,7 @@ class ApiService {
   }
 
   static const String _basUrl = 'https://api.unsplash.com';
-  static const String _accessKey = '8_sKr9zDk2jdHGkdqx9ypCt5tCECgpS-BcHbhpuUrY4'; // Replace with your Unsplash access key
+  static const String _accessKey = '8_sKr9zDk2jdHGkdqx9ypCt5tCECgpS-BcHbhpuUrY4';
   Future<List<String>> fetchPhotos({int perPage = 20}) async {
     final url = '$_basUrl/photos?per_page=$perPage&client_id=$_accessKey';
     final response = await http.get(Uri.parse(url));

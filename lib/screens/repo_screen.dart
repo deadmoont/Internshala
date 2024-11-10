@@ -33,7 +33,7 @@ class _RepoScreenState extends State<RepoScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.grey[850], // Set dialog background color to dark grey
+          backgroundColor: Colors.grey[850],
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -91,7 +91,7 @@ class _RepoScreenState extends State<RepoScreen> {
             TextButton(
               child: const Text(
                 'Close',
-                style: TextStyle(color: Colors.blueAccent), // Set button text color
+                style: TextStyle(color: Colors.blueAccent),
               ),
               onPressed: () {
                 Navigator.of(context).pop();

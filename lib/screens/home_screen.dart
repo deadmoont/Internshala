@@ -43,9 +43,9 @@ class _MyHomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade900, // Set background color to dark gray
+      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
-        backgroundColor: Colors.black87, // Dark AppBar color
+        backgroundColor: Colors.black87,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<HomeScreen> {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.white, // Set text color to white for contrast
+                color: Colors.white,
               ),
             ),
             Padding(
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<HomeScreen> {
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
         onTap: (i) => setState(() => _currentIndex = i),
-        backgroundColor: Colors.black87, // Set bottom bar background to dark
+        backgroundColor: Colors.black87,
         selectedItemColor: Colors.purpleAccent,
         unselectedItemColor: Colors.white60,
         items: [

@@ -11,9 +11,9 @@ class FullScreenImage extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: InteractiveViewer(
-          panEnabled: true, // Allows panning
-          minScale: 0.5, // Minimum zoom-out level
-          maxScale: 4.0, // Maximum zoom-in level
+          panEnabled: true,
+          minScale: 0.5,
+          maxScale: 4.0,
           child: Image.network(imageUrl),
         ),
       ),

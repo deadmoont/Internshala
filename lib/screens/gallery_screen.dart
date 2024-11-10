@@ -92,7 +92,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 child: Stack(
                   children: [
                     Card(
-                      color: Colors.grey[850], // Dark card color
+                      color: Colors.grey[850],
                       elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
