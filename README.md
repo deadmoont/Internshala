@@ -30,4 +30,4 @@ Ensure that you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/view-vault.git
+   git clone https://github.com/deadmoont/Internshala.git
