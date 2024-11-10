@@ -33,20 +33,19 @@ class _RepoScreenState extends State<RepoScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Username',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54),
-                ),
-                Text(
-                  owner['login'] ?? 'Unknown User',
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+          backgroundColor: Colors.grey[850], // Set dialog background color to dark grey
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Username',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white70),
+              ),
+              Text(
+                owner['login'] ?? 'Unknown User',
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
+              ),
+            ],
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -62,14 +61,26 @@ class _RepoScreenState extends State<RepoScreen> {
                 children: [
                   Column(
                     children: [
-                      const Text('Followers', style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text(owner['followers']?.toString() ?? 'N/A'),
+                      const Text(
+                        'Followers',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white70),
+                      ),
+                      Text(
+                        owner['followers']?.toString() ?? 'N/A',
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ],
                   ),
                   Column(
                     children: [
-                      const Text('Following', style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text(owner['following']?.toString() ?? 'N/A'),
+                      const Text(
+                        'Following',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white70),
+                      ),
+                      Text(
+                        owner['following']?.toString() ?? 'N/A',
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ],
                   ),
                 ],
@@ -78,7 +89,10 @@ class _RepoScreenState extends State<RepoScreen> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Close'),
+              child: const Text(
+                'Close',
+                style: TextStyle(color: Colors.blueAccent), // Set button text color
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -89,11 +103,17 @@ class _RepoScreenState extends State<RepoScreen> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black, // Set background color to black
       appBar: AppBar(
-        title: const Text('Public Repos'),
+        backgroundColor: Colors.black87, // Set AppBar color to dark
+        title: const Text(
+          'Public Repos',
+          style: TextStyle(color: Colors.white), // Set title text color to white
+        ),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _repos,
@@ -101,9 +121,9 @@ class _RepoScreenState extends State<RepoScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Center(child: Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white)));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No repos available'));
+            return const Center(child: Text('No repos available', style: TextStyle(color: Colors.white)));
           } else {
             final repos = snapshot.data!;
             return ListView.builder(
@@ -133,30 +153,45 @@ class _RepoScreenState extends State<RepoScreen> {
                     );
                   },
                   child: Card(
+                    color: Colors.grey[850], // Set card color to dark grey
                     margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    elevation: 4,
+                    elevation: 6,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Padding(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Colors.blueGrey.withOpacity(0.3), Colors.black.withOpacity(0.3)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Description', // Added a header for the description
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
+                          Row(
+                            children: const [
+                              Icon(Icons.info, color: Colors.blue, size: 20),
+                              SizedBox(width: 8),
+                              Text(
+                                'Description',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white, // Set text color to white
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 4),
                           Text(
                             description,
                             style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.black87,
+                              fontSize: 16,
+                              color: Colors.white70, // Adjust text color for readability
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -170,22 +205,22 @@ class _RepoScreenState extends State<RepoScreen> {
                           const SizedBox(height: 8),
                           Row(
                             children: [
-                              const Icon(Icons.calendar_today, size: 14, color: Colors.blueAccent),
+                              const Icon(Icons.calendar_today, size: 16, color: Colors.blueAccent),
                               const SizedBox(width: 5),
                               Text(
                                 'Created: $createdAt',
-                                style: const TextStyle(fontSize: 14, color: Colors.black54),
+                                style: const TextStyle(fontSize: 14, color: Colors.white70),
                               ),
                             ],
                           ),
                           const SizedBox(height: 4),
                           Row(
                             children: [
-                              const Icon(Icons.update, size: 14, color: Colors.orangeAccent),
+                              const Icon(Icons.update, size: 16, color: Colors.orangeAccent),
                               const SizedBox(width: 5),
                               Text(
                                 'Updated: $updatedAt',
-                                style: const TextStyle(fontSize: 14, color: Colors.black54),
+                                style: const TextStyle(fontSize: 14, color: Colors.white70),
                               ),
                             ],
                           ),

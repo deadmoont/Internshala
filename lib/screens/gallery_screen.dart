@@ -38,14 +38,23 @@ class _GalleryScreenState extends State<GalleryScreen> {
         _localBookmarkedPhotos.add(photoUrl);
       }
     });
-    // Call the parent's onBookmarkToggle to update the main bookmarked list
     widget.onBookmarkToggle(photoUrl);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Gallery')),
+      backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        title: const Text(
+          'Gallery',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.black,
+      ),
+
       body: FutureBuilder<List<String>>(
         future: _photos,
         builder: (context, snapshot) {
@@ -83,6 +92,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 child: Stack(
                   children: [
                     Card(
+                      color: Colors.grey[850], // Dark card color
                       elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
 
 class RepoDetailPage extends StatelessWidget {
   final Map<String, dynamic> repo;
@@ -11,8 +10,18 @@ class RepoDetailPage extends StatelessWidget {
     final files = repo['files'] as Map<String, dynamic>? ?? {};
 
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text('Repository Details'),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Repository Details',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.black,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -20,10 +29,11 @@ class RepoDetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Description', // Added a heading for the description
+              'Description',
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             const SizedBox(height: 8),
@@ -32,14 +42,18 @@ class RepoDetailPage extends StatelessWidget {
                   ? repo['description']
                   : 'No description available',
               style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: Colors.white70,
               ),
             ),
             const SizedBox(height: 20),
             const Text(
               'Files:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 10),
             Expanded(
@@ -51,19 +65,22 @@ class RepoDetailPage extends StatelessWidget {
                   String fileSize = _formatFileSize(file['size'] ?? 0);
 
                   return Card(
-                    elevation: 3,
+                    color: Colors.grey[850],
+                    elevation: 6,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 16,
-                      ),
+                      padding: const EdgeInsets.all(16),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Icon(
+                            Icons.insert_drive_file,
+                            color: Colors.blueAccent,
+                            size: 30,
+                          ),
+                          const SizedBox(width: 16),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,8 +88,9 @@ class RepoDetailPage extends StatelessWidget {
                                 Text(
                                   file['filename'] ?? 'No filename',
                                   style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
@@ -80,28 +98,20 @@ class RepoDetailPage extends StatelessWidget {
                                   'Type: ${file['type'] ?? 'Unknown'}',
                                   style: const TextStyle(
                                     fontSize: 14,
-                                    color: Colors.grey,
+                                    color: Colors.white70,
                                   ),
                                 ),
+                                const SizedBox(height: 2),
                                 Text(
                                   'Size: $fileSize',
                                   style: const TextStyle(
                                     fontSize: 14,
-                                    color: Colors.grey,
+                                    color: Colors.white70,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          // IconButton(
-                          //   icon: const Icon(Icons.open_in_new, color: Colors.blue),
-                          //   onPressed: () {
-                          //     final url = file['raw_url'] ?? '';
-                          //     if (url.isNotEmpty) {
-                          //       _launchURL(url);
-                          //     }
-                          //   },
-                          // ),
                         ],
                       ),
                     ),
@@ -115,7 +125,6 @@ class RepoDetailPage extends StatelessWidget {
     );
   }
 
-  // Formats file size into a human-readable format (e.g., KB, MB)
   String _formatFileSize(int size) {
     if (size < 1024) {
       return '$size B';
@@ -125,6 +134,8 @@ class RepoDetailPage extends StatelessWidget {
       return '${(size / 1048576).toStringAsFixed(2)} MB';
     }
   }
+}
+
 
 // void _launchURL(String url) async {
 //   Uri uri = Uri.parse(url);
@@ -133,4 +144,4 @@ class RepoDetailPage extends StatelessWidget {
 //     throw Exception('Could not launch $url');
 //   }
 // }
-}
+

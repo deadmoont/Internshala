@@ -43,7 +43,9 @@ class _MyHomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900, // Set background color to dark gray
       appBar: AppBar(
+        backgroundColor: Colors.black87, // Dark AppBar color
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -52,15 +54,15 @@ class _MyHomePageState extends State<HomeScreen> {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white, // Set text color to white for contrast
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 16.0), // Move the icon slightly to the left
+              padding: const EdgeInsets.only(right: 16.0),
               child: IconButton(
                 icon: const Icon(
                   Icons.bookmark,
-                  color: Colors.red,
+                  color: Colors.redAccent,
                   size: 28,
                 ),
                 onPressed: () {
@@ -82,17 +84,19 @@ class _MyHomePageState extends State<HomeScreen> {
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
         onTap: (i) => setState(() => _currentIndex = i),
+        backgroundColor: Colors.black87, // Set bottom bar background to dark
+        selectedItemColor: Colors.purpleAccent,
+        unselectedItemColor: Colors.white60,
         items: [
           SalomonBottomBarItem(
             icon: const Icon(TablerIcons.brand_github),
             title: const Text("Repo-List"),
-            selectedColor: Colors.purple,
-            unselectedColor: Colors.black,
+            selectedColor: Colors.purpleAccent,
           ),
           SalomonBottomBarItem(
             icon: const Icon(TablerIcons.photo_search),
             title: const Text("Gallery"),
-            selectedColor: Colors.pink,
+            selectedColor: Colors.pinkAccent,
           ),
         ],
       ),
